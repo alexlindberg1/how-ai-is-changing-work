@@ -4,15 +4,21 @@ export interface LaunchResult {
 }
 
 export interface CodexLaunchConfig {
-  /** Which demo scaffold to copy into a fresh run folder. */
+  /** Which fresh-run template prepare-codex-run.mjs should copy (localhost dev only). */
   demoKey: 'dataAnalysis' | 'proposal'
   /** Prompt prefilled in the Codex composer. Use __RUN_ID__ for the fresh run id. */
   preparedPrompt: string
+  /** Absolute local workspace path for Codex when hosted or prepare API is unavailable. */
+  localCodexPath: string
 }
 
 function isLocalDevHost(): boolean {
   const host = window.location.hostname
   return host === 'localhost' || host === '127.0.0.1' || host === '[::1]'
+}
+
+function makeRunId(): string {
+  return new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
 }
 
 async function prepareWorkspace(
@@ -32,35 +38,38 @@ async function prepareWorkspace(
   return (await res.json()) as { projectPath: string; runId: string }
 }
 
+async function resolveWorkspace(
+  config: CodexLaunchConfig,
+): Promise<{ projectPath: string; runId: string; freshRun: boolean }> {
+  if (isLocalDevHost()) {
+    try {
+      const prepared = await prepareWorkspace(config.demoKey)
+      return { ...prepared, freshRun: true }
+    } catch {
+      // Fall back to the configured local path if the dev prepare API is down.
+    }
+  }
+
+  return {
+    projectPath: config.localCodexPath,
+    runId: makeRunId(),
+    freshRun: false,
+  }
+}
+
 /**
- * Materializes a fresh workspace, then opens Codex in a new thread via
- * `codex://threads/new` with the prompt and path prefilled.
+ * Opens Codex in a new thread via `codex://threads/new` with the prompt and
+ * local project path prefilled.
+ *
+ * - On localhost + `npm run dev`: copies a fresh scaffold into demo-runs/… first.
+ * - On hosted URLs (e.g. Render): skips server prep and opens Codex on this
+ *   machine using `localCodexPath` — works because `codex://` is handled locally.
  *
  * The deep link pre-fills the composer but does not auto-submit — ideal
  * on stage because the audience sees the prompt before you press Enter.
- *
- * On hosted deployments (e.g. Render), Codex demos are local-only.
  */
 export async function launchCodex(config: CodexLaunchConfig): Promise<LaunchResult> {
-  if (!isLocalDevHost()) {
-    return {
-      message:
-        'Codex live demo runs locally — use npm run dev on your laptop for this button.',
-    }
-  }
-
-  let projectPath: string
-  let runId: string
-
-  try {
-    ;({ projectPath, runId } = await prepareWorkspace(config.demoKey))
-  } catch (error) {
-    const detail = error instanceof Error ? error.message : String(error)
-    return {
-      message: `Could not prepare fresh workspace — run the deck with npm run dev (${detail})`,
-    }
-  }
-
+  const { projectPath, runId, freshRun } = await resolveWorkspace(config)
   const prompt = config.preparedPrompt.replaceAll('__RUN_ID__', runId)
 
   let copied = false
@@ -77,9 +86,17 @@ export async function launchCodex(config: CodexLaunchConfig): Promise<LaunchResu
   })
   window.location.href = `codex://threads/new?${params.toString()}`
 
+  if (freshRun) {
+    return {
+      message: copied
+        ? `Fresh Codex run ${runId} — new thread opening (prompt copied as backup)`
+        : `Fresh Codex run ${runId} — new thread opening`,
+    }
+  }
+
   return {
     message: copied
-      ? `Fresh Codex run ${runId} — new thread opening (prompt copied as backup)`
-      : `Fresh Codex run ${runId} — new thread opening`,
+      ? `Opening Codex on this machine — prompt prefilled (also copied as backup)`
+      : `Opening Codex on this machine — prompt prefilled`,
   }
 }

@@ -8,9 +8,21 @@
  * starts from a fresh scaffold instead of reusing a prior test build.
  */
 
+/**
+ * Absolute path to this repo on your presentation machine.
+ * Edit if you present from a different machine or location.
+ */
+const REPO_ROOT =
+  '/Users/alexlindberg/Desktop/elite_ai_automations/admin/presentation_how_ai_is_changing_work'
+
 export interface DemoArtifactConfig {
   /** Which fresh-run template prepare-codex-run.mjs should copy. */
   demoKey: 'dataAnalysis' | 'proposal'
+  /**
+   * Local Codex workspace used when the deck is hosted (e.g. Render).
+   * The codex:// deep link opens this path on the presenter's machine.
+   */
+  localCodexPath: string
   sourceType: 'xlsx' | 'pdf'
   /** Public URL of the source artifact (served from /public for in-slide preview). */
   sourceFile: string
@@ -31,6 +43,7 @@ const base = import.meta.env.BASE_URL
 export const demoArtifacts: Record<'dataAnalysis' | 'proposal', DemoArtifactConfig> = {
   dataAnalysis: {
     demoKey: 'dataAnalysis',
+    localCodexPath: `${REPO_ROOT}/demo-templates/data-analysis`,
     sourceType: 'xlsx',
     sourceFile: `${base}demo/summit-plumbing-financials.xlsx`,
     sourceLabel: 'summit-plumbing-financials.xlsx',
@@ -69,11 +82,12 @@ WHEN FINISHED — required for live demo:
 
    Replace PORT with the actual port Vite/vinext prints (usually 5173).
 4. Do not end without printing that URL. Do not ask me to prompt again for it.`,
-    launchHint: 'Prepares a fresh workspace + new Codex thread — press Enter to run',
+    launchHint: 'Opens Codex on this machine with prompt prefilled — press Enter to run',
   },
 
   proposal: {
     demoKey: 'proposal',
+    localCodexPath: `${REPO_ROOT}/demo-templates/proposal`,
     sourceType: 'pdf',
     sourceFile: `${base}demo/summit-plumbing-proposal.pdf`,
     sourceLabel: 'summit-plumbing-proposal.pdf',
@@ -120,7 +134,7 @@ WHEN FINISHED — required for live demo:
 
    Replace PORT with the actual port Vite prints (usually 5173).
 4. Do not end without printing that URL. Do not ask me to prompt again for it.`,
-    launchHint: 'Prepares a fresh workspace + new Codex thread — press Enter to run',
+    launchHint: 'Opens Codex on this machine with prompt prefilled — press Enter to run',
   },
 }
 

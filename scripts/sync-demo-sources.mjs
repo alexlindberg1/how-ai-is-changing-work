@@ -13,6 +13,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const pairs = [
   ['public/demo/summit-plumbing-financials.xlsx', 'demo-data-analysis/source/summit-plumbing-financials.xlsx'],
   ['public/demo/summit-plumbing-proposal.pdf', 'demo-proposal/source/summit-plumbing-proposal.pdf'],
+  ['public/demo/summit-plumbing-financials.xlsx', 'demo-templates/data-analysis/source/summit-plumbing-financials.xlsx'],
+  ['public/demo/summit-plumbing-proposal.pdf', 'demo-templates/proposal/source/summit-plumbing-proposal.pdf'],
 ]
 
 for (const [src, dest] of pairs) {
