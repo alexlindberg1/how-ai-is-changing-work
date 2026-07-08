@@ -1,0 +1,1258 @@
+================================================================================
+PRESENTATION CONTEXT EXPORT — How AI Is Changing How Work Gets Done
+Generated for ChatGPT / external refinement
+Presenter: Alex Lindberg | Elite AI
+Event: Chamber of Commerce | July 9, 2026
+================================================================================
+
+HOW TO USE THIS FILE
+Paste this entire document into ChatGPT when you want help refining the script,
+rehearsal feedback, demo prep, Q&A, or tailoring to specific audience members.
+
+================================================================================
+SECTION 1: INTERVIEW CONTEXT (decisions from planning sessions)
+================================================================================
+
+AUDIENCE
+- ~8 local small business owners
+- Mixed industries (specific industries not yet confirmed)
+- Chamber of Commerce group — RETURNING AUDIENCE (Alex presented ~1 year ago at Dial One)
+- Mostly non-technical decision-makers
+
+FORMAT
+- ~35-40 minute talk + ~10 minutes Q&A
+- Intimate room (8 people) — conversational tone works well
+
+PRIMARY GOALS
+1. Mindset shift — understand how AI is changing how work gets done (not a hard sell)
+2. Practical first steps — show how productive people become with AI on their side
+3. Defuse fears: job replacement, "not technical," cost, data privacy, "ChatGPT wasn't useful"
+
+PRESENTER / ELITE AI
+- Alex Lindberg, one-person company called Elite AI
+- Helps businesses implement high-impact technology solutions to modernize operations
+- Previously spoke to this group at Dial One (~1 year ago)
+
+OPENING (refined draft — in Section 7)
+- Thank group; Dial One callback; reintro Elite AI
+- AI moved fast since last talk; goal is how work gets done, not every tool
+- Productivity without deep technical background; leaders should experiment
+
+DEMO APPROACH
+- Two live demos via window-switch (NOT embedded in slide deck)
+- Deck stays in browser; Alt+Tab or second monitor for demos
+
+DEMO 1: ChatGPT Sites
+- Show static PDF/XLSX/report → interactive site as deliverable
+- Scenario: Summit Plumbing quarterly review for commercial property manager
+- Backup: pre-built Site if live generation fails
+
+DEMO 2: Cursor + QuickBooks Online Sandbox
+- Show AI as "super user" of business software via API
+- Real QBO sandbox has full UI + sample data (~29 customers, ~146 transactions)
+- Business question: overdue invoices by customer
+- Optional punch: create invoice via API, refresh QBO to show it appeared
+- Fallback: export CSV from QBO, analyze in Cursor if OAuth fails
+
+PRESENTATION TONE
+- Not a tech tutorial or prompt-engineering class
+- Practical, relatable, SMB-focused
+- Explicitly address that generic ChatGPT often disappoints — connected AI is different
+
+STILL TO REFINE (open items)
+- [ ] Confirm industries of the 8 owners before July 9
+- [ ] Final demo scenario: Summit Plumbing vs bakery vs agency
+- [ ] QBO demo: read-only query only vs invoice-creation punch
+- [ ] Close: mention Elite AI services explicitly or stay purely educational?
+- [ ] Business card / contact mention?
+
+================================================================================
+SECTION 2: DECK STRUCTURE (8 slides)
+================================================================================
+
+Flow:
+Slide 1 Opening → Slide 2 Traditional Work → Slide 3 Value Chain →
+Slide 4 Agentic Loop → Slide 5 Artifacts (+ Demo 1) → Slide 6 Business Systems (+ Demo 2) →
+Slide 7 Future Workflow → Slide 8 Closing + Predictions
+
+SLIDE 1 — Opening (3 steps)
+- Title: How AI Is Changing How Work Gets Done
+- Alex Lindberg | Elite AI | July 9th, 2026
+- Subtitle: A practical look at how AI is reshaping business operations
+- Opening script: see Section 7 (Alex's refined draft)
+
+SLIDE 2 — How Work Traditionally Happens (7 steps)
+- Kicker: The Status Quo
+- Flow: Business Systems → Humans → Reports → Meetings → Decisions
+- Key insight: Humans spend enormous time moving information around
+
+SLIDE 3 — AI Moves Up The Value Chain (6 steps)
+- Calculator → Software → Automation → AI → Agent
+- Key line: AI can now participate in work, not just store information
+
+SLIDE 4 — The Agentic Loop (5 steps)
+- Goal → Think → Act → Observe loop vs Input→Output software
+
+SLIDE 5 — Interactive Artifact Transformation (4 steps) + DEMO 1
+
+SLIDE 6 — AI Connected To Business Systems (5 steps) + DEMO 2
+
+SLIDE 7 — Future Workflow (4 steps)
+
+SLIDE 8 — Closing (5 steps)
+- Three predictions + final statement:
+  "The organizations that win with AI will not necessarily have the best AI."
+  "They will have the best business context connected to AI."
+
+================================================================================
+SECTION 3: TIME BUDGET (~38 min talk + 10 min Q&A)
+================================================================================
+
+Opening (Slide 1)                 4 min
+Slide 2                             7 min
+Slide 3                             5 min
+Slide 4                             5 min
+Slide 5 + Demo 1 (ChatGPT Sites)    9 min
+Slide 6 + Demo 2 (Cursor/QBO)      11 min
+Slide 7                             3 min
+Slide 8                             4 min
+Q&A                                10 min
+
+================================================================================
+SECTION 4: RECURRING THEMES & OBJECTION HANDLING
+================================================================================
+
+THEMES: humans up value chain | interactive artifacts | AI + your data | agents iterate
+
+OBJECTION MAP
+Job replacement → "Humans move higher in the value chain"
+Not technical → Demo 2 / opening: no deep technical background needed
+Too expensive → "You already pay for software"
+Data privacy → "You decide what AI sees"
+ChatGPT wasn't useful → connected AI vs generic chat
+
+================================================================================
+SECTION 5: DEMO RUNBOOKS
+================================================================================
+
+--- DEMO 1: ChatGPT Sites ---
+Placement: After Slide 5 step 1 | Duration: 6 min
+
+CHATGPT PROMPT:
+Create a ChatGPT Site for a fictional local business: "Summit Plumbing Co."
+Context: quarterly service review for Riverside Office Park property manager.
+Include: dashboard of Q work, breakdown by service type, next-quarter priorities, contact section.
+Professional and interactive — instead of a 12-page PDF.
+
+--- DEMO 2: Cursor + QBO Sandbox ---
+Placement: After Slide 6 step 5 | Duration: 7 min
+Setup: developer.intuit.com sandbox, OAuth tokens in demo/qbo/.env
+
+CURSOR PROMPT:
+Using QBO sandbox API and .env credentials, script that refreshes OAuth token,
+queries invoices Balance > 0 and DueDate > 30 days overdue, groups by customer,
+prints plain-English summary.
+
+================================================================================
+SECTION 6: SLIDE-BY-SLIDE GUIDE
+================================================================================
+
+# Presentation Script — How AI Is Changing How Work Gets Done
+
+## **To practice aloud → open PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md)**
+
+That file has every line labeled **SAY:** in blockquotes — read it top to bottom with a timer.  
+This file is the presenter guide (timing, cues, demo setup). The exact words live in `PRACTICE_SCRIPT.md`.
+
+**Event:** Chamber of Commerce  
+**Date:** July 9th, 2026  
+**Presenter:** Alex Lindberg | Elite AI  
+**Audience:** ~8 local small business owners, mixed industries  
+**Format:** ~35–40 min talk + ~10 min Q&A  
+**Deck:** Web keynote at `http://localhost:5173` (press `F` fullscreen, `S` speaker notes)
+
+---
+
+## How to Use These Files
+
+| File | What's in it |
+|------|----------------|
+| **PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md)** | **Exact words to say** — labeled `SAY:` in blockquotes. Open this to rehearse. |
+| **PRESENTATION_SCRIPT.md** (this file) | Timing, on-screen cues, demo setup, Q&A topics, refinement log |
+
+Press `→` in the deck at each **STEP** marker in the practice script.
+
+---
+
+# PART I — PRESENTER GUIDE
+
+---
+
+## Talk Overview
+
+### Goals
+
+1. **Mindset shift** — Help owners see that AI is changing *how work gets done*, not just adding another tool.
+2. **Practical first steps** — Show how productive people become when AI is on their side.
+3. **Defuse common fears** — Job replacement, "I'm not technical," cost, data privacy, "ChatGPT wasn't useful."
+
+### Time Budget
+
+| Section | Slides / Demo | Target | Flex |
+|---------|---------------|--------|------|
+| Opening + hook | Slide 1 (3 steps) | 4 min | Can trim to 3 min |
+| The problem today | Slide 2 (7 steps) | 7 min | Trim steps 4–5 if behind |
+| How AI is evolving | Slide 3 (6 steps) | 5 min | Keep tight |
+| The agentic loop | Slide 4 (5 steps) | 5 min | Advance iterations quickly |
+| Artifacts are changing | Slide 5 (4 steps) | 3 min | In-deck slider only |
+| **Demo 1: ChatGPT Sites** | Window switch | 6 min | Use backup if slow |
+| AI + your systems | Slide 6 (5 steps) | 4 min | Sets up Demo 2 |
+| **Demo 2: Cursor + QBO** | Window switch | 7 min | CSV fallback if OAuth fails |
+| Future workflow | Slide 7 (4 steps) | 3 min | |
+| Close + predictions | Slide 8 (5 steps) | 4 min | Let final line breathe |
+| **Q&A** | — | ~10 min | |
+| **Total talk** | | **~38 min** | Buffer: 2–3 min from Slide 2 or 3 |
+
+### Rehearsal Notes
+
+Run Part II aloud with a timer. Expected speak rate: ~130 words/min.
+
+| Component | Estimate |
+|-----------|----------|
+| Part II speakable text | ~1,400 words ≈ 11 min |
+| Demo 1 (ChatGPT Sites) | 6 min (includes generation wait) |
+| Demo 2 (Cursor + QBO) | 7 min (includes script run wait) |
+| Animation pauses, audience moments | ~10–14 min |
+| **Estimated total talk** | **~34–38 min** |
+
+**Checkpoints — if over by 3+ min, cut here:**
+
+| Checkpoint | Cumulative | Cut |
+|------------|------------|-----|
+| End Slide 2 | ~11 min | Steps 4–5 narration |
+| End Slide 4 | ~21 min | One value-chain stage |
+| End Demo 1 | ~30 min | Use pre-built Site |
+| End Demo 2 | ~37 min | Skip invoice-creation punch |
+| End Slide 8 | ~41 min | One sentence per prediction |
+
+**Window layout for demos:**
+- **Dual monitor:** Deck on one screen, demos on the other
+- **Single monitor:** Alt+Tab; bookmark order: Deck → ChatGPT → QBO → Cursor
+
+### Presenter Bio
+
+Alex Lindberg runs Elite AI — a one-person company helping businesses implement high-impact technology solutions to modernize their operations. Previously presented to this Chamber group ~1 year ago at Dial One. Today's talk: how AI is changing how work gets done (not a survey of every new tool).
+
+### Recurring Themes Checklist
+
+- [ ] **Humans move up the value chain** — Slides 2, 7, 8
+- [ ] **Artifacts become interactive** — Slide 5 + Demo 1
+- [ ] **AI + your data beats generic AI** — Slide 6 + Demo 2
+- [ ] **Agents iterate; software doesn't** — Slide 4 + Demo 2
+- [ ] **Address all five objections naturally** — see Objection Map
+
+### Objection Handling Map
+
+| Fear | Where | Anchor line (in Part II) |
+|------|-------|--------------------------|
+| Job replacement | Slides 2, 7, 8 | "Humans move higher in the value chain" |
+| Not technical | Demo 2 | "I am not a QuickBooks power user" |
+| Too expensive | Slide 6, Q&A | "You already pay for software" |
+| Data privacy | Slide 6, Q&A | "You decide what AI sees" |
+| ChatGPT wasn't useful | Opening, Demo 1 | "That gap is exactly what we're here to talk about" |
+
+---
+
+## Demo Runbooks
+
+**Exact demo wording → PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md#demo-1--chatgpt-sites)**
+
+---
+
+### Demo 1: ChatGPT Sites
+
+| | |
+|---|---|
+| **Placement** | After Slide 5, step 1 — before in-deck slider |
+| **Duration** | 6 min |
+| **Narrative beat** | Static PDF/report → interactive site as the deliverable |
+
+**Window setup:** Deck tab → ChatGPT tab → Backup Site tab (bookmark all three)
+
+**Live prompt** — copy from Part II or Notes app before talk.
+
+**Backup if WiFi/generation fails:** Switch to pre-built Site; say "I built this one ahead of time — same idea."
+
+**Prep checklist:**
+- [ ] ChatGPT Plus with Sites confirmed working
+- [ ] Backup Site created and bookmarked
+- [ ] Prompt in Notes app
+- [ ] Test 48 hours before event
+- [ ] Venue WiFi or phone hotspot ready
+
+---
+
+### Demo 2: Cursor + QuickBooks Online Sandbox
+
+| | |
+|---|---|
+| **Placement** | After Slide 6, step 5 |
+| **Duration** | 7 min |
+| **Narrative beat** | AI as super-user layer over software you already use |
+
+**Why QBO sandbox:** Full QuickBooks UI with ~29 customers, ~146 transactions, sample "Party Planning Services" company. API changes visible when you refresh the QBO tab.
+
+**One-time setup:**
+1. developer.intuit.com (https://developer.intuit.com) → create account
+2. My Hub → Sandboxes → QBO Plus → US → Create
+3. Create app "Elite AI Demo" → get Client ID + Secret
+4. OAuth 2.0 Playground (https://developer.intuit.com/app/developer/playground) → Refresh Token + Realm ID
+5. Copy to `demo/qbo/.env` (see `demo/qbo/.env.example`)
+
+**Split-screen layout:** Cursor + terminal left | QBO browser tab right
+
+**Risk mitigation:**
+
+| Risk | Mitigation |
+|------|------------|
+| OAuth expired | Run scripts 30 min before; test end-to-end |
+| API fails on stage | CSV export fallback — see Part II Demo 2 fallback block |
+| Terminal too small | `Cmd + +` or output to markdown file in browser |
+
+**Prep checklist:**
+- [ ] Sandbox created and bookmarked
+- [ ] `.env` populated with refresh token
+- [ ] `query-overdue.js` tested (build during rehearsal)
+- [ ] Screen recording backup saved
+- [ ] CSV export fallback prepared
+
+---
+
+## Slide-by-Slide Guide
+
+Press `→` to advance steps. Press `S` for in-deck speaker notes.
+
+**Exact wording for every step → PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md)**
+
+---
+
+### Slide 1 — Opening (~4 min)
+
+**On-screen:** Title animates — "How AI Is Changing How Work Gets Done." Date, name, Elite AI, subtitle. (Visual is static after load — use → for pacing beats.)
+
+| Step | Time | Intent |
+|------|------|--------|
+| 0 | ~1 min | Thank you; Dial One callback; reintro — Alex Lindberg, Elite AI, one-person shop, modernizing operations |
+| 1 | ~1.5 min | AI moved fast since last talk; today's goal is *how work gets done*, not every tool/trend |
+| 2 | ~1.5 min | Productivity without deep technical background; walk through concepts leaders should experiment with |
+
+**Notes:** Returning audience — the Dial One reference builds credibility. Hand-raise poll removed in favor of direct framing.  
+**Transition:** Pause, then → to Slide 2.
+
+---
+
+### Slide 2 — How Work Traditionally Happens (~7 min)
+
+**On-screen:** Kicker "The Status Quo." Vertical workflow diagram builds.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title only | "This is how most businesses work today" |
+| 1 | 1 min | Business Systems | Information lives in disconnected systems |
+| 2 | 1 min | Humans (highlighted) | Humans are the connective tissue |
+| 3 | 1 min | PDF/Excel/Word/Email tags | Name the artifacts of knowledge work |
+| 4 | 45 sec | Information in motion animation | Handoffs = delay + error risk |
+| 5 | 45 sec | Reports + Meetings nodes | Meetings exist because info is scattered |
+| 6 | 1 min | Decisions node + insight card | Decisions wait on slow assembly |
+| 7 | 1 min | Full insight visible | Key line: humans move information, not value |
+
+**Audience moment (step 6):** "Does this sound familiar?"  
+**Objection weave:** Plants "humans aren't replaced — they're the glue today."  
+**Transition:** "So what changes?"
+
+---
+
+### Slide 3 — AI Moves Up The Value Chain (~5 min)
+
+**On-screen:** Kicker "Evolution." Five-stage horizontal progression.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | AI role is shifting — historical frame |
+| 1 | 45 sec | Calculator | Assists computation |
+| 2 | 45 sec | Software | Stores information |
+| 3 | 45 sec | Automation | Repeats rules |
+| 4 | 45 sec | AI | Reasons over unstructured data |
+| 5 | 1 min | Agent + bottom card | Agents pursue goals; AI participates in work |
+
+**Transition:** "What does that look like? The agentic loop."
+
+---
+
+### Slide 4 — The Agentic Loop (~5 min)
+
+**On-screen:** Kicker "The Shift." Loop SVG + comparison cards.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | Name the mental model |
+| 1 | 1 min | Loop draws: Goal→Think→Act→Observe | Explain iteration until goal met |
+| 2 | 1 min | Traditional Software card | Input→Output, one pass |
+| 3 | 1 min | Agent card + iteration counter | Goal→Iterate→Complete; let animation run |
+| 4 | 45 sec | Bottom line visible | "This is why AI feels different" |
+
+**Audience moment (step 3):** Let loop animate 2–3 iterations before advancing.  
+**Transition:** "Two things change in practice — outputs and connections."
+
+---
+
+### Slide 5 — Interactive Artifact Transformation (~3 min + Demo 1)
+
+**On-screen:** Kicker "Transformation." Before/after slider.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | AI changes what work *produces* |
+| 1 | 45 sec | Subtitle line | Name weekly outputs: proposals, reports, recaps |
+| — | 6 min | **→ DEMO 1** | ChatGPT Sites — window switch |
+| 2 | 1 min | Slider + example tabs | Drag slider; click Proposal/Report/Agenda tabs |
+| 3 | 45 sec | Bottom insight line | Artifact becomes a tool |
+
+**Transition:** "Interactive outputs are half the story. Where AI gets its information is the other half."
+
+---
+
+### Slide 6 — AI Connected To Business Systems (~4 min + Demo 2)
+
+**On-screen:** Kicker "Architecture." Hub diagram — AI Agent center, systems around it.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | Most important section for leaders |
+| 1 | 45 sec | System nodes appear | Name their existing tools |
+| 2 | 45 sec | Connection lines | Generic AI ≠ connected AI |
+| 3 | 45 sec | Data pulses inward | Connected AI = super-powered team member |
+| 4 | 45 sec | Key insight card glows | Layer above systems, not replacement |
+| 5 | 30 sec | Subtext visible | Proprietary context = competitive moat |
+| — | 7 min | **→ DEMO 2** | Cursor + QBO — window switch |
+
+**Objection weave (step 3):** Data privacy — intentional connection.  
+**Transition:** "Let me show you what this looks like in practice."
+
+---
+
+### Slide 7 — Future Workflow (~3 min)
+
+**On-screen:** Kicker "The Shift Ahead." Today vs Future side-by-side.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | Two pictures: today and emerging |
+| 1 | 1 min | Today column | Human is bottleneck at every step |
+| 2 | 45 sec | Future column | AI handles analysis; human decides |
+| 3 | 45 sec | Both columns | Human step moved, not removed |
+| 4 | 45 sec | Key message card | Humans move up the value chain |
+
+**Objection weave (step 3):** Job replacement — "Your people aren't replaced. They're elevated."  
+**Transition:** "Three predictions."
+
+---
+
+### Slide 8 — Closing (~4 min)
+
+**On-screen:** Kicker "Looking Ahead." Three predictions → full-screen final statement.
+
+| Step | Time | On-screen cue | Intent |
+|------|------|---------------|--------|
+| 0 | 30 sec | Title | Frame as directions you're already seeing |
+| 1 | 45 sec | Prediction 01 | AI assistant as infrastructure |
+| 2 | 45 sec | Prediction 02 | Artifacts become interactive |
+| 3 | 45 sec | Prediction 03 | Business context = moat |
+| 4 | 1 min | Full-screen final statement | Read closing lines slowly; thank audience |
+
+**Audience moment (step 4):** 3–4 seconds of silence after final line.  
+**Transition:** Open Q&A (~10 min).
+
+---
+
+## Q&A Prep
+
+**Exact Q&A answers → PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md#qa--exact-answers)**
+
+Likely topics: job replacement, not technical, cost, data privacy, ChatGPT disappointment, where to start, industry fit, hiring help, accuracy, urgency.
+
+---
+
+## Refinement Log
+
+### Opening / Personal Story
+- [x] Dial One callback (~1 year ago) — in opening script
+- [x] Elite AI intro — one-person company, high-impact tech solutions
+- [ ] Add exact city name if desired
+- [ ] Confirm industries of the 8 owners before July 9
+
+### Demo 1 — ChatGPT Sites
+- [ ] Final scenario: Summit Plumbing vs bakery vs agency
+- [ ] Create and bookmark backup Site
+- [ ] Test venue WiFi / hotspot
+
+### Demo 2 — Cursor + QBO
+- [ ] Complete sandbox setup
+- [ ] Build and test `demo/qbo/` scripts
+- [ ] Decide: read-only query vs invoice-creation punch
+- [ ] Record screen backup
+
+### Close
+- [ ] Mention Elite AI services explicitly, or stay educational?
+- [ ] Business card / contact mention?
+
+### Rehearsal Timing (Fill In After Part II Run-Through)
+
+| Section | Target | Actual | Notes |
+|---------|--------|--------|-------|
+| Slide 1 | 4 min | | |
+| Slide 2 | 7 min | | |
+| Slide 3 | 5 min | | |
+| Slide 4 | 5 min | | |
+| Slide 5 | 3 min | | |
+| Demo 1 | 6 min | | |
+| Slide 6 | 4 min | | |
+| Demo 2 | 7 min | | |
+| Slide 7 | 3 min | | |
+| Slide 8 | 4 min | | |
+| **Total** | **~38 min** | | |
+
+---
+
+# Practice Script (Exact Wording)
+
+All spoken lines are in **PRACTICE_SCRIPT.md (./PRACTICE_SCRIPT.md)** — open that file to rehearse.
+
+Every block is labeled **SAY:** in blockquotes so you can read it aloud top to bottom.
+
+---
+
+*Last updated: guide + practice script split into two files.*
+
+================================================================================
+SECTION 7: FULL PRACTICE SCRIPT — EXACT WORDING (read aloud)
+================================================================================
+
+# Practice Script — Exact Wording
+
+**Read this file aloud to rehearse.**  
+Press `→` in the deck at each **STEP** marker.
+
+Guide (timing, cues, demo setup): see PRESENTATION_SCRIPT.md (./PRESENTATION_SCRIPT.md)
+
+---
+
+## Slide 1 — Opening
+
+All on one slide — press `→` between beats to pace yourself, then once more to go to Slide 2.
+
+---
+
+### STEP 0 · Slide 1 · ~1 min
+
+#### SAY:
+
+First off, thank you all for having me today. I know I gave a presentation to this group about a year ago at Dial One, but just to quickly reintroduce myself — my name is Alex Lindberg. I run a one-person company called Elite AI, where I help businesses implement high-impact technology solutions to modernize their operations.
+
+---
+
+### STEP 1 · Slide 1 · ~1.5 min
+
+#### SAY:
+
+Obviously, a lot has happened in the world of AI since the last time I spoke with you. And honestly, with how quickly things are moving, I feel like I could give a new presentation on AI every week and still not run out of new things to talk about.
+
+But the goal today is not to cover every new AI tool or trend. The goal is to talk about how AI is changing how work actually gets done.
+
+---
+
+### STEP 2 · Slide 1 · ~1.5 min
+
+#### SAY:
+
+And I think this is really important because it is incredible how productive an individual can be right now if they know how to use the right tools. You do not necessarily need a deeply technical background to benefit from a lot of this. You just need to understand what is possible, where these tools fit into real business workflows, and what is worth experimenting with.
+
+So today, I'm going to walk through a few different AI concepts and applications, with a strong emphasis on the things I think business leaders should be paying attention to and experimenting with right now.
+
+#### PAUSE — let the title land. Press → to Slide 2.
+
+---
+
+## Slide 2 — How Work Traditionally Happens
+
+---
+
+### STEP 0 · Slide 2 · ~30 sec
+
+#### SAY:
+
+Let's start with how work actually happens in most businesses today — including mine, and probably yours.
+
+---
+
+### STEP 1 · Slide 2 · ~1 min
+
+#### SAY:
+
+It starts with your business systems. QuickBooks. Your email. Maybe a CRM or scheduling tool. Your point-of-sale system. The information lives there — customer records, invoices, job history, inventory.
+
+---
+
+### STEP 2 · Slide 2 · ~1 min
+
+#### SAY:
+
+But the systems don't talk to each other. So who connects them? You. Your office manager. Your bookkeeper. Your best employee who "just knows where everything is."
+
+Humans are the connective tissue between every piece of software in your business.
+
+---
+
+### STEP 3 · Slide 2 · ~1 min
+
+#### SAY:
+
+And what does that look like day to day? PDFs. Excel spreadsheets. Word documents. Email chains.
+
+These are the artifacts of knowledge work — the reports, proposals, recaps, and updates that move between people.
+
+---
+
+### STEP 4 · Slide 2 · ~45 sec
+
+#### SAY:
+
+Information is constantly in motion. Pulled from one system, pasted into a spreadsheet, emailed to someone, imported into another tool.
+
+Every handoff takes time. Every handoff adds a chance someone misreads something or uses an outdated version.
+
+---
+
+### STEP 5 · Slide 2 · ~45 sec
+
+#### SAY:
+
+Reports get assembled manually — someone exports data, someone else formats it, someone else checks the numbers. And then you meet.
+
+Why do we have so many meetings? Because the information is scattered. Meetings exist to synchronize what everyone should already know.
+
+---
+
+### STEP 6 · Slide 2 · ~1 min
+
+#### SAY:
+
+And finally — decisions. But decisions wait. They wait on the report that took three days to assemble. They wait on the person who has the full picture. They wait on the meeting that gets scheduled for next Tuesday.
+
+Does this sound familiar to anyone?
+
+#### PAUSE
+
+---
+
+### STEP 7 · Slide 2 · ~1 min
+
+#### SAY:
+
+Here's the insight I want you to hold onto: in most businesses, humans spend an enormous amount of time moving information around — not creating value, not serving customers, not making strategic decisions. Just moving information. Copying, pasting, exporting, emailing, reformatting.
+
+So what changes? That's where AI comes in — but not in the way most people think.
+
+---
+
+## Slide 3 — AI Moves Up The Value Chain
+
+---
+
+### STEP 0 · Slide 3 · ~30 sec
+
+#### SAY:
+
+AI is not new. But its role in work is fundamentally shifting. To understand where we're headed, it helps to see how tools have evolved over time.
+
+---
+
+### STEP 1 · Slide 3 · ~45 sec
+
+#### SAY:
+
+We started with calculators. Tools that assist computation. You do the thinking; the tool does the math.
+
+---
+
+### STEP 2 · Slide 3 · ~45 sec
+
+#### SAY:
+
+Then software. QuickBooks stores your books. Your CRM stores your customers. Spreadsheets store your data. Software organizes and stores — but you still do all the thinking and moving.
+
+---
+
+### STEP 3 · Slide 3 · ~45 sec
+
+#### SAY:
+
+Automation came next. If-this-then-that. Rules. "When a form is submitted, send an email." "When inventory drops below 10, reorder." Repeatable, rule-based tasks. Useful — but rigid. It can't handle ambiguity.
+
+---
+
+### STEP 4 · Slide 3 · ~45 sec
+
+#### SAY:
+
+Now AI. And this is the shift. AI can reason over unstructured information — emails, documents, notes, messy spreadsheets. It doesn't just store data or follow rules. It interprets.
+
+---
+
+### STEP 5 · Slide 3 · ~1 min
+
+#### SAY:
+
+And the newest layer: agents. An agent doesn't just respond to a prompt — it pursues a goal. It thinks, acts, checks the result, and tries again.
+
+AI can now participate in work — not just store information, not just follow rules, but actively contribute to getting things done.
+
+What does that actually look like? Let me show you the mental model.
+
+---
+
+## Slide 4 — The Agentic Loop
+
+---
+
+### STEP 0 · Slide 4 · ~30 sec
+
+#### SAY:
+
+This is the mental model that makes AI feel different from every tool you've used before. I call it the agentic loop.
+
+---
+
+### STEP 1 · Slide 4 · ~1 min
+
+#### SAY:
+
+An agent starts with a goal — not a single question, but an outcome. "Get me a summary of overdue invoices by customer."
+
+Then it thinks: what do I need to do? It acts: query the system, read the data. It observes: did I get what I need? If not, it thinks again and acts again.
+
+Goal, think, act, observe — in a loop until the job is done.
+
+---
+
+### STEP 2 · Slide 4 · ~1 min
+
+#### SAY:
+
+Compare that to traditional software. Input in, output out. One pass. Fixed result.
+
+You ask QuickBooks for a report, you get the report it was designed to give you. If that's not the right report, you figure it out yourself.
+
+---
+
+### STEP 3 · Slide 4 · ~1 min
+
+#### SAY:
+
+An agent operates differently. Goal, iterate, complete.
+
+Watch the loop — each iteration refines the approach. The iteration counter is going up because it's not done in one pass. It's working the problem.
+
+#### PAUSE — let animation run through 2–3 iterations
+
+---
+
+### STEP 4 · Slide 4 · ~45 sec
+
+#### SAY:
+
+This is why AI feels different. It's not a faster calculator. It's not a better spreadsheet. It's a new kind of worker that pursues outcomes through continuous refinement. You give it a goal and get out of the way.
+
+So what does this change in practice? Two things: what work produces, and how work connects to your systems.
+
+---
+
+## Slide 5 — Interactive Artifact Transformation
+
+---
+
+### STEP 0 · Slide 5 · ~30 sec
+
+#### SAY:
+
+The first big change: AI doesn't just change how work is done. It changes what work produces.
+
+---
+
+### STEP 1 · Slide 5 · ~45 sec
+
+#### SAY:
+
+Think about what your business produces every week. Proposals. Status reports. Meeting recaps. Client updates. Training documents.
+
+Right now, most of those are static files — PDFs, Word docs, spreadsheets. You send them and hope someone reads them.
+
+Let me show you what happens when the output itself becomes a tool. I'm going to switch to a live demo.
+
+#### ACTION — switch to ChatGPT tab
+
+---
+
+## Demo 1 — ChatGPT Sites
+
+---
+
+### DEMO 1 · OPEN · ~30 sec
+
+#### SAY:
+
+Let me show you what I mean. Imagine you're Summit Plumbing. Every quarter you send a PDF to your commercial clients. Watch what happens when the output is a site instead.
+
+#### ACTION — paste prompt into ChatGPT (do not read prompt aloud)
+
+#### PASTE ONLY (ChatGPT prompt):
+
+```
+Create a ChatGPT Site for a fictional local business: "Summit Plumbing Co."
+
+Context: They are presenting a quarterly service review to a commercial property
+manager (Riverside Office Park). The site should include:
+
+- A summary dashboard of work completed this quarter (inspections, repairs, preventive maintenance)
+- A breakdown by service type with estimated cost savings
+- A section for recommended next-quarter priorities the client can click through
+- A contact / schedule follow-up section
+
+Make it professional, clean, and interactive — something they'd share instead of
+a 12-page PDF report.
+```
+
+---
+
+### DEMO 1 · GENERATE · ~2 min
+
+#### SAY:
+
+I'm describing the business context in plain English. No code.
+
+#### ACTION — wait for Site to generate
+
+#### SAY (while it builds):
+
+It's building sections, layout, interactive elements… This used to take someone hours in Word or PowerPoint.
+
+---
+
+### DEMO 1 · INTERACT · ~2 min
+
+#### SAY:
+
+Your client opens this on their phone. They drill into the numbers. They see next-quarter priorities. They don't need a meeting to understand what you did.
+
+#### ACTION — click through the Site
+
+---
+
+### DEMO 1 · CLOSE · ~1 min
+
+#### SAY:
+
+This is what I mean when I say the artifact becomes the tool. Your expertise is the same. The packaging changed.
+
+And this isn't about replacing you — it's about letting people act on your work faster.
+
+#### ACTION — switch back to deck
+
+#### IF GENERATION FAILED — SAY:
+
+I built this one ahead of time — same idea. Let me walk you through it.
+
+---
+
+## Slide 5 — continued
+
+---
+
+### STEP 2 · Slide 5 · ~1 min
+
+#### SAY:
+
+Back to the concept. Drag this slider — on the left, a traditional proposal PDF. On the right, an interactive proposal site. Same information, completely different experience.
+
+#### ACTION — drag slider; click Proposal → Report → Agenda tabs
+
+#### SAY:
+
+Status reports become explorable dashboards. Meeting agendas become interactive workspaces with tasks, notes, and follow-ups built in.
+
+---
+
+### STEP 3 · Slide 5 · ~45 sec
+
+#### SAY:
+
+The artifact itself becomes a tool, not just a document. Your customer doesn't read your proposal — they explore it. Your team doesn't sit through a meeting to understand a report — they interact with it.
+
+This is happening now, and it's accessible to businesses your size.
+
+But interactive outputs are only half the story. The other half is where AI gets its information.
+
+---
+
+## Slide 6 — AI Connected To Business Systems
+
+---
+
+### STEP 0 · Slide 6 · ~30 sec
+
+#### SAY:
+
+This is the most important section for business leaders. And it's the one most people miss.
+
+---
+
+### STEP 1 · Slide 6 · ~45 sec
+
+#### SAY:
+
+Your organization already has systems. You have accounting — probably QuickBooks. You have email. You might have a CRM, or scheduling software, or a POS system. You have documents, spreadsheets, years of business history.
+
+---
+
+### STEP 2 · Slide 6 · ~45 sec
+
+#### SAY:
+
+The real value is not AI by itself. ChatGPT alone is interesting — but it knows nothing about your business. It doesn't know your customers, your pricing, your inventory, your history.
+
+---
+
+### STEP 3 · Slide 6 · ~45 sec
+
+#### SAY:
+
+The real value is AI connected to your business data. When the agent can read your QuickBooks, your email, your CRM — it stops being a generic chatbot and starts being a super-powered member of your team.
+
+That connection is intentional. You decide what AI sees and what it doesn't. Your competitive advantage is your business context — treat it accordingly.
+
+---
+
+### STEP 4 · Slide 6 · ~45 sec
+
+#### SAY:
+
+AI becomes a layer above your existing systems — not a replacement. You don't rip out QuickBooks. You don't abandon your CRM. You add a layer that can talk to all of them.
+
+---
+
+### STEP 5 · Slide 6 · ~30 sec
+
+#### SAY:
+
+And here's why this matters for competitive advantage: anyone can use ChatGPT. Not everyone can connect AI to ten years of customer history, proprietary pricing, and institutional knowledge. That's the moat.
+
+Let me show you what this looks like in practice. I'm going to switch to another live demo.
+
+#### ACTION — switch to QBO sandbox, then Cursor
+
+---
+
+## Demo 2 — Cursor + QuickBooks Online Sandbox
+
+---
+
+### DEMO 2 · SETUP · ~30 sec
+
+#### SAY:
+
+QuickBooks. Real software. Sample company with real-looking data. I am not a QuickBooks power user.
+
+#### ACTION — show QBO sandbox (Sales → Invoices or Customers)
+
+---
+
+### DEMO 2 · PROMPT · ~1 min
+
+#### SAY:
+
+I'm going to ask a business question — which customers have invoices overdue by more than thirty days, and how much do they owe — and let AI talk to QuickBooks for me.
+
+Plain English. No manual report building. This is the agentic loop — think, act, observe.
+
+#### ACTION — paste prompt in Cursor (do not read aloud)
+
+#### PASTE ONLY (Cursor prompt):
+
+```
+Using the QuickBooks Online sandbox API and credentials in .env, write a script that:
+1. Refreshes the OAuth access token
+2. Queries all invoices with Balance > 0 and DueDate older than 30 days
+3. Groups results by customer name
+4. Prints a plain-English summary to the terminal
+
+Use the sandbox base URL. Handle token refresh automatically.
+```
+
+---
+
+### DEMO 2 · RUN · ~2 min
+
+#### ACTION — run script
+
+#### SAY:
+
+There. Every customer with overdue balances, summarized. That would have taken me twenty minutes clicking through reports — if I even knew where to look.
+
+---
+
+### DEMO 2 · PUNCH (optional) · ~1 min
+
+#### SAY:
+
+Watch QuickBooks — I'm going to have AI create an invoice.
+
+#### ACTION — run create-invoice script; refresh QBO tab
+
+#### SAY:
+
+It appeared. AI didn't replace QuickBooks. It made me a super user.
+
+---
+
+### DEMO 2 · CLOSE · ~1 min
+
+#### SAY:
+
+This is what connected AI looks like. Your CRM, your scheduling tool, your accounting — the value is AI plus YOUR data. That's the moat generic ChatGPT can't replicate.
+
+#### ACTION — switch back to deck
+
+#### IF API FAILED — SAY:
+
+Same idea — AI working with your business data. Let me show you with an export.
+
+#### SAY (after CSV fallback):
+
+The API version is how this runs automatically every morning without you touching it.
+
+---
+
+## Slide 7 — Future Workflow
+
+---
+
+### STEP 0 · Slide 7 · ~30 sec
+
+#### SAY:
+
+So where does all of this lead? Let me show you two pictures — how work flows today, and how it's starting to flow.
+
+---
+
+### STEP 1 · Slide 7 · ~1 min
+
+#### SAY:
+
+Today. Data lives in a system. A human pulls it out. Pastes it into a spreadsheet. Calls a meeting to discuss it. And eventually — maybe — a decision gets made.
+
+The human is the bottleneck at every step.
+
+---
+
+### STEP 2 · Slide 7 · ~45 sec
+
+#### SAY:
+
+Future. Data lives in the system. AI reads it directly. AI runs the analysis. AI surfaces a recommendation. And the human makes the decision — with better information, faster.
+
+---
+
+### STEP 3 · Slide 7 · ~45 sec
+
+#### SAY:
+
+Notice what's different. The human step didn't disappear — it moved. Instead of spending an hour building the spreadsheet, you're spending five minutes reviewing the recommendation and applying judgment.
+
+Your people aren't replaced. They're elevated.
+
+---
+
+### STEP 4 · Slide 7 · ~45 sec
+
+#### SAY:
+
+Humans are not removed. Humans move higher in the value chain. Less time moving information. More time on judgment, relationships, and strategy — the things that actually grow a business.
+
+Let me leave you with three predictions.
+
+---
+
+## Slide 8 — Closing
+
+---
+
+### STEP 0 · Slide 8 · ~30 sec
+
+#### SAY:
+
+Three predictions for the next few years. Not certainties — but directions I'm already seeing with the businesses I work with.
+
+---
+
+### STEP 1 · Slide 8 · ~45 sec
+
+#### SAY:
+
+First: every employee will have an AI assistant. Not as a perk or an experiment — as infrastructure. The way email became infrastructure. The way smartphones became infrastructure.
+
+It will be part of how work gets done, and businesses that don't adapt will feel it in their productivity.
+
+---
+
+### STEP 2 · Slide 8 · ~45 sec
+
+#### SAY:
+
+Second: most business artifacts become interactive experiences. Proposals, reports, training materials, client updates — they'll be links, not attachments. Dashboards, not PDFs.
+
+You saw a version of this in the demo. This is coming to every industry.
+
+---
+
+### STEP 3 · Slide 8 · ~45 sec
+
+#### SAY:
+
+Third: competitive advantage comes from connecting AI to proprietary business data. The businesses that win won't have the best AI — they'll have the best business context connected to AI.
+
+Your customer history, your pricing logic, your operational knowledge. That's the moat.
+
+---
+
+### STEP 4 · Slide 8 · ~1 min
+
+#### SAY:
+
+And that's the line I want you to remember:
+
+#### PAUSE
+
+#### SAY:
+
+The organizations that win with AI will not necessarily have the best AI.
+
+#### PAUSE
+
+#### SAY:
+
+They will have the best business context connected to AI.
+
+#### PAUSE — 3–4 seconds of silence
+
+#### SAY:
+
+Thank you. I'd love to hear what's on your mind — what you're already doing, what's holding you back, or where you see this applying in your business.
+
+---
+
+## Q&A — Exact Answers
+
+---
+
+**"Will AI replace my employees?"**
+
+#### SAY:
+
+No — and the businesses I see winning with AI aren't cutting headcount. They're doing more with the same team. The office manager who spent half her day copying data between systems now spends that time on client relationships. AI removes the tedious connective-tissue work, not the people.
+
+---
+
+**"I'm not technical. Can I actually use this?"**
+
+#### SAY:
+
+That's exactly what the QuickBooks demo was about. I described a business question in plain English. I didn't write code — AI did. Your starting point isn't learning to code. It's identifying one repetitive task in your business and asking whether AI could handle it.
+
+---
+
+**"How much does this cost?"**
+
+#### SAY:
+
+ChatGPT Plus is twenty dollars a month per user. Many tools have free tiers. The bigger investment is time — figuring out where AI fits in your workflow. On the custom side, connecting AI to your systems varies widely, but you don't need to start there. Start with one person, one use case, one month of experimenting.
+
+---
+
+**"Is my business data safe?"**
+
+#### SAY:
+
+Valid concern. Generic ChatGPT uses your inputs for training unless you opt out. Business plans and enterprise tools offer data controls. When you connect AI to QuickBooks or your CRM, you control what access it has — same as any other software integration. Be intentional. Don't paste sensitive data into free tools without checking the terms.
+
+---
+
+**"I tried ChatGPT and it wasn't that useful."**
+
+#### SAY:
+
+That's the most common thing I hear. Generic chat is like a brilliant intern who doesn't know your business. Ask it to write a marketing email and you get something generic. Connect it to your customer data, your past proposals, your pricing — and it becomes a different tool entirely. The demo today was about that shift.
+
+---
+
+**"Where should I start?"**
+
+#### SAY:
+
+Pick one task someone on your team does every week that involves moving information — summarizing emails, building a report, drafting a proposal. Have them try doing it with ChatGPT or Claude for two weeks. One task, one person. See what changes. Don't try to transform the whole business at once.
+
+---
+
+**"Does this work for my industry?"**
+
+#### SAY:
+
+The pattern is universal: information lives in systems, humans move it, AI can help. The specifics depend on your tools and workflows. Once I know your industry, I can point to a concrete starting point — job estimates for trades, client intake for professional services, inventory reports for retail.
+
+---
+
+**"Do I need to hire someone like you?"**
+
+#### SAY:
+
+Not to start. You can experiment on your own with the tools available today. Where companies like mine come in is when you want AI connected to your systems — automated workflows, custom agents, integrations with QuickBooks, CRM, email. That's when the productivity gains compound. But the first step is free and you can do it this week.
+
+---
+
+**"What about accuracy? AI makes things up."**
+
+#### SAY:
+
+It does — and you should always review output, especially for client-facing or financial work. Think of AI as a fast draft, not a final answer. The agentic loop helps — it checks and iterates — but human judgment stays in the loop. That's the "move up the value chain" idea.
+
+---
+
+**"How fast is this moving? Should I wait?"**
+
+#### SAY:
+
+The businesses experimenting now are building institutional knowledge about how AI fits their operations. The ones who wait won't lose overnight — but they'll be learning while competitors are compounding. You don't need to go all-in. You need to start.
+
+================================================================================
+SECTION 8: IN-DECK SPEAKER NOTES (slides.ts)
+================================================================================
+
+SLIDE 1 — Opening (3 steps)
+1. Thank group. Dial One ~1 year ago. Alex Lindberg, Elite AI, one-person company.
+2. AI moved fast. Goal: how work gets done, not every tool/trend.
+3. Productivity without deep tech background. Concepts leaders should experiment with.
+
+(Slides 2-8: see prior export sections in deck)
+
+================================================================================
+END OF EXPORT
+================================================================================
