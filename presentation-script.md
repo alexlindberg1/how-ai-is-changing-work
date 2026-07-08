@@ -113,11 +113,7 @@ The AI can then work through that problem:
 2. Then it observes what it found and realizes that several customers are overdue.
 3. But maybe that is not enough context. So now it checks CRM notes or recent email history.
 4. It might discover that one customer simply needs a reminder, while another has an active service issue and probably should not receive an automated collections email.
-5. So it adjusts.
-   - One case might move directly toward an action.
-   - Another might get routed to a person for review.
-
-And this process can continue until the goal is complete.
+5. And from there, it really adjusst and keeps going until it determines that it has met its goal./
 
 That is the basic idea behind what people call the **agentic loop**:
 
@@ -158,3 +154,104 @@ And I want to show you two simple examples of that.
 
 - One with data analysis.
 - And one with a proposal.
+
+
+---
+
+## Slide 9 — The Changing Role of the Human
+
+So when you start applying this pattern across more and more parts of a business, I think something important starts to happen to the role of the human.
+
+Go back to the model we started with.
+
+Historically, people were the connection layer because there really was no alternative.
+
+- A system captured information.
+- A person pulled it out.
+- A person organized it.
+- A person interpreted it.
+- A person created the report, drafted the email, updated the spreadsheet, or figured out what should happen next.
+- And eventually, someone made a decision.
+
+But as AI starts taking on more of the gathering, summarizing, analyzing, routing, and preparation work, the human role starts to move.
+
+- Instead of spending an hour building the report, maybe you spend five minutes reviewing the recommendation.
+- Instead of checking every transaction, you review the exceptions.
+- Instead of drafting every response from scratch, you apply judgment to something that is already prepared.
+- Instead of manually carrying every piece of information through the process, you step in where your experience actually matters.
+
+And I think that is a much better way to frame the conversation than simply asking, “Will AI replace people?”
+
+The more useful question is:
+
+> **Which parts of a job genuinely require human judgment, relationships, accountability, creativity, and context?**
+>
+> **And which parts exist because, historically, a human was the only thing capable of connecting the dots?**
+
+That distinction is becoming incredibly important.
+
+The businesses that use AI well are going to spend less human energy moving information around, and more human energy on the things people are actually good at — judgment, relationships, creativity, and strategy.
+
+
+---
+
+## Slide 10 — How to Actually Get Started
+
+So with all of that said, what should a business leader actually do with this right now?
+
+My honest advice is not to go back tomorrow and announce some giant AI transformation initiative.
+
+Do not try to automate your entire company.
+
+Do not buy ten different tools because someone online told you that you need them.
+
+Start much smaller.
+
+Pick one person, one recurring workflow, and one real pain point.
+
+Look for something that happens every week and involves moving information.
+
+- Maybe someone is building a report.
+- Maybe they are summarizing emails.
+- Maybe they are preparing quotes.
+- Reviewing invoices.
+- Updating a spreadsheet.
+- Creating client recaps.
+- Or looking across multiple systems to answer the same question over and over again.
+
+Start there.
+
+Then ask a few simple questions:
+
+- Can AI help gather the information?
+- Can it summarize it?
+- Can it interpret it?
+- Can it prepare the first draft?
+- Can it flag the exceptions?
+- Can it recommend the next step?
+- And eventually, could it connect directly to the systems involved?
+
+You do not need to transform the whole company at once.
+
+- One person.
+- One workflow.
+- One month.
+
+Learn what works.
+Learn where human review is still necessary.
+Learn where the real leverage is.
+
+Because the businesses experimenting now are building something very valuable:
+
+An understanding of where AI actually fits inside their operations.
+
+And I think that understanding is going to matter more and more over the next few years.
+
+So I will leave you with one final thought.
+
+> The organizations that win with AI will not necessarily have the best AI.
+>
+> They will have the best business context connected to AI.
+
+Thank you.
+

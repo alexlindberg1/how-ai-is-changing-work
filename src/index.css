@@ -110,6 +110,11 @@ body {
     var(--color-bg);
 }
 
+.laser-active,
+.laser-active * {
+  cursor: none !important;
+}
+
 .grain-overlay {
   pointer-events: none;
   position: fixed;

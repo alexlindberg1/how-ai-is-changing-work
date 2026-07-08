@@ -15,8 +15,10 @@ import { Slide06DemoProposal } from '../slides/Slide06DemoProposal'
 import { Slide06BusinessSystems } from '../slides/Slide06BusinessSystems'
 import { Slide08ValueChain } from '../slides/Slide08ValueChain'
 import { Slide09StartSmall } from '../slides/Slide09StartSmall'
+import { Slide10Questions } from '../slides/Slide10Questions'
 import { AnimatedBackground } from '../components/AnimatedBackground'
 import { CompanyLogo } from '../components/CompanyLogo'
+import { LaserPointer } from '../components/LaserPointer'
 
 const slideComponents = [
   Slide01Opening,
@@ -29,6 +31,7 @@ const slideComponents = [
   Slide06BusinessSystems,
   Slide08ValueChain,
   Slide09StartSmall,
+  Slide10Questions,
 ]
 
 export function DeckController() {
@@ -65,6 +68,8 @@ export function DeckController() {
         onSelect={deck.goToSlide}
         onClose={deck.closeOverlays}
       />
+
+      <LaserPointer />
 
       <div className="grain-overlay" aria-hidden="true" />
     </div>

@@ -138,6 +138,14 @@ export const slides: SlideMeta[] = [
       'Final line — let it breathe: the organizations that win with AI will not necessarily have the best AI. They will have the best business context connected to AI. Thank the audience.',
     ],
   },
+  {
+    id: 'questions',
+    title: 'Questions',
+    steps: 1,
+    speakerNotes: [
+      'Open the floor for questions. Offer to talk one-on-one afterward about what this could look like in their business.',
+    ],
+  },
 ]
 
 export const finalStatement = {
