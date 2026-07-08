@@ -12,7 +12,7 @@ export function ProgressBar({ slideIndex }: ProgressBarProps) {
           {String(slideIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
         </span>
         <span className="font-mono text-kicker text-text-dim tracking-widest hidden sm:block">
-          → NEXT · ← PREV · O OVERVIEW · F FULLSCREEN
+          → NEXT · ← PREV · O OVERVIEW · F FULLSCREEN · L LASER
         </span>
       </div>
       <div className="flex gap-1">

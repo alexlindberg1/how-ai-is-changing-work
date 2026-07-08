@@ -16,12 +16,26 @@ export function LaserPointer() {
   const [active, setActive] = useState(false)
   const [pulses, setPulses] = useState<Pulse[]>([])
   const pulseId = useRef(0)
+  // Keep last known pointer so toggling on never leaves the dot off-screen.
+  const lastPos = useRef({ x: 0, y: 0 })
 
   const x = useMotionValue(-100)
   const y = useMotionValue(-100)
-  // Slight lag makes the dot feel like a physical pointer
   const trailX = useSpring(x, { stiffness: 900, damping: 55 })
   const trailY = useSpring(y, { stiffness: 900, damping: 55 })
+
+  // Always track the pointer so activation can jump to the real cursor.
+  useEffect(() => {
+    const track = (e: PointerEvent) => {
+      lastPos.current = { x: e.clientX, y: e.clientY }
+      if (active) {
+        x.set(e.clientX)
+        y.set(e.clientY)
+      }
+    }
+    window.addEventListener('pointermove', track)
+    return () => window.removeEventListener('pointermove', track)
+  }, [active, x, y])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -29,20 +43,28 @@ export function LaserPointer() {
         return
       }
       if (e.key === 'l' || e.key === 'L') {
-        setActive((prev) => !prev)
+        e.preventDefault()
+        setActive((prev) => {
+          const next = !prev
+          if (next) {
+            const { x: px, y: py } = lastPos.current
+            // Fall back to viewport center if we haven't seen a move yet.
+            const cx = px || window.innerWidth / 2
+            const cy = py || window.innerHeight / 2
+            x.set(cx)
+            y.set(cy)
+          }
+          return next
+        })
       }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [])
+  }, [x, y])
 
   useEffect(() => {
     if (!active) return
 
-    const handleMove = (e: PointerEvent) => {
-      x.set(e.clientX)
-      y.set(e.clientY)
-    }
     const handleClick = (e: PointerEvent) => {
       x.set(e.clientX)
       y.set(e.clientY)
@@ -54,11 +76,9 @@ export function LaserPointer() {
     }
 
     document.documentElement.classList.add('laser-active')
-    window.addEventListener('pointermove', handleMove)
     window.addEventListener('pointerdown', handleClick)
     return () => {
       document.documentElement.classList.remove('laser-active')
-      window.removeEventListener('pointermove', handleMove)
       window.removeEventListener('pointerdown', handleClick)
     }
   }, [active, x, y])
@@ -76,36 +96,36 @@ export function LaserPointer() {
           {pulses.map((pulse) => (
             <motion.div
               key={pulse.id}
-              className="absolute rounded-full border border-[rgba(201,85,85,0.5)]"
+              className="absolute rounded-full border border-[rgba(201,85,85,0.55)]"
               style={{ left: pulse.x, top: pulse.y, x: '-50%', y: '-50%' }}
-              initial={{ width: 14, height: 14, opacity: 0.6 }}
-              animate={{ width: 64, height: 64, opacity: 0 }}
+              initial={{ width: 16, height: 16, opacity: 0.7 }}
+              animate={{ width: 72, height: 72, opacity: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
             />
           ))}
 
           {/* Soft halo */}
           <motion.div
-            className="absolute h-9 w-9 rounded-full"
+            className="absolute h-11 w-11 rounded-full"
             style={{
               left: trailX,
               top: trailY,
               x: '-50%',
               y: '-50%',
               background:
-                'radial-gradient(circle, rgba(201, 85, 85, 0.18) 0%, rgba(201, 85, 85, 0.07) 50%, transparent 70%)',
+                'radial-gradient(circle, rgba(201, 85, 85, 0.28) 0%, rgba(201, 85, 85, 0.1) 45%, transparent 70%)',
             }}
           />
           {/* Core dot */}
           <motion.div
-            className="absolute h-2.5 w-2.5 rounded-full"
+            className="absolute h-3 w-3 rounded-full"
             style={{
               left: trailX,
               top: trailY,
               x: '-50%',
               y: '-50%',
-              background: 'radial-gradient(circle, #e89a9a 0%, #c95555 60%, #b34a4a 100%)',
-              boxShadow: '0 0 8px rgba(201, 85, 85, 0.45), 0 0 20px rgba(201, 85, 85, 0.2)',
+              background: 'radial-gradient(circle, #f0b0b0 0%, #c95555 55%, #a84444 100%)',
+              boxShadow: '0 0 10px rgba(201, 85, 85, 0.55), 0 0 24px rgba(201, 85, 85, 0.28)',
             }}
           />
         </motion.div>
