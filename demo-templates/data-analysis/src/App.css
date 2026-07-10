@@ -155,6 +155,29 @@ p {
   justify-content: space-between;
   padding: 18px;
   border-top: 5px solid #8f9aa0;
+  text-align: left;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+button.stat {
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+button.stat:hover,
+button.stat:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(35, 48, 52, 0.12);
+  outline: none;
+}
+
+button.stat.active {
+  border-color: #155f62;
+  box-shadow: 0 16px 34px rgba(21, 95, 98, 0.16);
 }
 
 .stat.good {
@@ -237,17 +260,42 @@ h2 {
 }
 
 .segmented button {
+  position: relative;
   min-width: 78px;
   min-height: 36px;
   border: 0;
   border-radius: 6px;
   background: transparent;
+  color: #4d5b63;
+  font-weight: 800;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease,
+    transform 120ms ease;
+}
+
+.segmented button:hover,
+.segmented button:focus-visible {
+  color: #152029;
+  background: rgba(21, 95, 98, 0.08);
+  outline: none;
+}
+
+.segmented button:active {
+  transform: scale(0.97);
 }
 
 .segmented button.active {
   color: #fff;
   background: #155f62;
   box-shadow: 0 8px 18px rgba(14, 85, 88, 0.22);
+}
+
+.segmented button.active:hover,
+.segmented button.active:focus-visible {
+  color: #fff;
+  background: #0f4f52;
 }
 
 .chart-shell {
@@ -279,11 +327,30 @@ svg {
   opacity: 0.8;
 }
 
+.selected-rule {
+  stroke: rgba(14, 79, 85, 0.28);
+  stroke-dasharray: 4 6;
+  stroke-width: 2;
+}
+
+.selected-value {
+  fill: #0e4f55;
+  font-size: 13px;
+  font-weight: 850;
+  text-anchor: middle;
+}
+
 .dot {
   fill: #1d8061;
   stroke: #fff;
   stroke-width: 4;
-  transition: transform 160ms ease;
+  transition:
+    transform 160ms ease,
+    fill 160ms ease,
+    stroke 160ms ease,
+    r 160ms ease;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .dot.down {
@@ -296,15 +363,24 @@ svg {
   stroke-width: 5;
 }
 
-.month-mark button {
-  appearance: none;
-  border: 0;
-  background: transparent;
-  padding: 0;
+.month-mark {
+  cursor: pointer;
+  outline: none;
 }
 
-.month-mark button:hover .dot {
-  transform: scale(1.22);
+.month-mark .hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.month-mark:hover .dot,
+.month-mark:focus-visible .dot,
+.month-mark.is-selected .dot {
+  transform: scale(1.18);
+}
+
+.month-mark:focus-visible .hit {
+  fill: rgba(21, 95, 98, 0.06);
 }
 
 .axis {
@@ -319,12 +395,14 @@ svg {
 
 .month-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(180px, 1.1fr) repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 12px;
 }
 
-.month-strip div {
+.month-strip > div,
+.month-strip > button,
+.month-nav {
   padding: 14px;
   border-radius: 8px;
   background: #f3f6f1;
@@ -334,6 +412,62 @@ svg {
   display: block;
   margin-top: 6px;
   font-size: 1.25rem;
+}
+
+.month-nav {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.month-nav > div {
+  text-align: center;
+}
+
+.month-nav button,
+.month-stat {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.month-nav button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #e4ece6;
+  font-size: 1.1rem;
+  font-weight: 850;
+  transition: background 140ms ease, transform 120ms ease;
+}
+
+.month-nav button:hover:not(:disabled),
+.month-nav button:focus-visible:not(:disabled) {
+  background: #d3e2da;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.month-nav button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.month-stat {
+  width: 100%;
+  text-align: left;
+  transition: background 140ms ease, transform 120ms ease;
+}
+
+.month-stat:hover,
+.month-stat:focus-visible {
+  background: #e7efea;
+  outline: none;
+  transform: translateY(-1px);
 }
 
 .positive {
@@ -353,8 +487,7 @@ svg {
 }
 
 .rank-list,
-.declines,
-.outliers {
+.declines {
   display: grid;
   gap: 10px;
 }
@@ -445,16 +578,41 @@ svg {
 }
 
 .outliers {
+  display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 14px;
 }
 
-.outliers article {
+.outliers article,
+.outliers .outlier-card {
   min-height: 154px;
   position: relative;
   padding: 14px;
   border: 1px solid #d9e1dc;
   border-radius: 8px;
   background: #f8faf7;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+
+.outliers .outlier-card {
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.outliers .outlier-card:hover,
+.outliers .outlier-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: #155f62;
+  box-shadow: 0 14px 28px rgba(21, 95, 98, 0.12);
+  outline: none;
 }
 
 .outliers strong,
@@ -483,6 +641,11 @@ svg {
 .outliers b.sent {
   color: #8a561d;
   background: #fff1d1;
+}
+
+#trend,
+#concentration {
+  scroll-margin-top: 1rem;
 }
 
 .actions {

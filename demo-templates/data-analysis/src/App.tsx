@@ -84,16 +84,50 @@ const pct = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 1,
 })
 
-function metricValue(month: Month, metric: "revenue" | "invoices" | "avgInvoice") {
+type MetricKey = "revenue" | "invoices" | "avgInvoice"
+
+function metricValue(month: Month, metric: MetricKey) {
   return month[metric]
 }
 
-function metricLabel(metric: "revenue" | "invoices" | "avgInvoice") {
+function metricLabel(metric: MetricKey) {
   return metric === "revenue" ? "Revenue" : metric === "invoices" ? "Invoices" : "Avg invoice"
 }
 
-function formatMetric(value: number, metric: "revenue" | "invoices" | "avgInvoice") {
+function formatMetric(value: number, metric: MetricKey) {
   return metric === "invoices" ? value.toLocaleString("en-US") : money.format(value)
+}
+
+function SegmentedControl<T extends string>({
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  label: string
+  value: T
+  options: { key: T; label: string }[]
+  onChange: (key: T) => void
+}) {
+  return (
+    <div className="segmented" role="tablist" aria-label={label}>
+      {options.map((option) => {
+        const active = value === option.key
+        return (
+          <button
+            key={option.key}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            className={active ? "active" : ""}
+            onClick={() => onChange(option.key)}
+          >
+            {option.label}
+          </button>
+        )
+      })}
+    </div>
+  )
 }
 
 function TrendChart({
@@ -102,7 +136,7 @@ function TrendChart({
   onSelect,
 }: {
   activeMonth: string
-  metric: "revenue" | "invoices" | "avgInvoice"
+  metric: MetricKey
   onSelect: (month: string) => void
 }) {
   const width = 900
@@ -114,6 +148,11 @@ function TrendChart({
   const x = (index: number) => pad + (index * (width - pad * 2)) / (months.length - 1)
   const y = (value: number) => height - pad - ((value - min) / (max - min)) * (height - pad * 2)
   const path = months.map((month, index) => `${index === 0 ? "M" : "L"} ${x(index)} ${y(metricValue(month, metric))}`).join(" ")
+  const selected = months.find((month) => month.month === activeMonth) ?? months[months.length - 1]
+  const selectedIndex = months.findIndex((month) => month.month === activeMonth)
+  const selectedX = selectedIndex >= 0 ? x(selectedIndex) : x(months.length - 1)
+  const selectedY = y(metricValue(selected, metric))
+  const step = (width - pad * 2) / (months.length - 1)
 
   return (
     <div className="chart-shell">
@@ -122,6 +161,7 @@ function TrendChart({
           const gy = pad + line * ((height - pad * 2) / 3)
           return <line className="grid" key={line} x1={pad} x2={width - pad} y1={gy} y2={gy} />
         })}
+        <line className="selected-rule" x1={selectedX} x2={selectedX} y1={pad} y2={height - pad} />
         {months.map((month, index) => {
           const barHeight = (month.outstanding / outstanding) * 86
           return (
@@ -137,15 +177,34 @@ function TrendChart({
           )
         })}
         <path className="line" d={path} />
+        <text className="selected-value" x={selectedX} y={selectedY - 16}>
+          {formatMetric(metricValue(selected, metric), metric)}
+        </text>
         {months.map((month, index) => {
           const isSelected = month.month === activeMonth
           const isDown = month.mom !== null && month.mom < 0
+          const cx = x(index)
+          const cy = y(metricValue(month, metric))
           return (
-            <g className="month-mark" key={month.month}>
-              <button aria-label={`Select ${month.month}`} onClick={() => onSelect(month.month)}>
-                <circle className={`dot ${isDown ? "down" : ""} ${isSelected ? "selected" : ""}`} cx={x(index)} cy={y(metricValue(month, metric))} r="9" />
-              </button>
-              <text className="axis x-axis" x={x(index)} y={height - 14}>
+            <g
+              className={`month-mark${isSelected ? " is-selected" : ""}`}
+              key={month.month}
+              role="button"
+              tabIndex={0}
+              aria-label={`Select ${month.month}, ${formatMetric(metricValue(month, metric), metric)}`}
+              aria-pressed={isSelected}
+              onClick={() => onSelect(month.month)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault()
+                  onSelect(month.month)
+                }
+              }}
+            >
+              {/* Wide invisible hit target — works in Firefox unlike <button> inside SVG */}
+              <rect className="hit" x={cx - step / 2} y={pad - 8} width={step} height={height - pad * 2 + 36} />
+              <circle className={`dot ${isDown ? "down" : ""} ${isSelected ? "selected" : ""}`} cx={cx} cy={cy} r={isSelected ? 11 : 9} />
+              <text className="axis x-axis" x={cx} y={height - 14}>
                 {month.month.slice(5)}
               </text>
             </g>
@@ -177,14 +236,32 @@ function RankList({ rows }: { rows: Rank[] }) {
 
 export function App() {
   const [activeMonth, setActiveMonth] = useState("2026-06")
-  const [metric, setMetric] = useState<"revenue" | "invoices" | "avgInvoice">("revenue")
+  const [metric, setMetric] = useState<MetricKey>("revenue")
   const [rankMode, setRankMode] = useState<"customers" | "services">("customers")
 
   const selected = useMemo(() => months.find((month) => month.month === activeMonth) ?? months[months.length - 1], [activeMonth])
+  const selectedIndex = months.findIndex((month) => month.month === activeMonth)
   const lastQuarterRevenue = months.slice(-3).reduce((sum, month) => sum + month.revenue, 0)
   const firstQuarterRevenue = months.slice(0, 3).reduce((sum, month) => sum + month.revenue, 0)
   const topService = topServices[0]
   const rankRows = rankMode === "customers" ? topCustomers : topServices
+  const peakOpenMonth = useMemo(
+    () => months.reduce((best, month) => (month.outstanding > best.outstanding ? month : best), months[0]),
+    [],
+  )
+
+  const focusTrend = (nextMetric?: MetricKey, month?: string) => {
+    if (nextMetric) setMetric(nextMetric)
+    if (month) setActiveMonth(month)
+    requestAnimationFrame(() => {
+      document.getElementById("trend")?.scrollIntoView({ behavior: "smooth", block: "start" })
+    })
+  }
+
+  const stepMonth = (delta: number) => {
+    const next = Math.min(months.length - 1, Math.max(0, selectedIndex + delta))
+    setActiveMonth(months[next].month)
+  }
 
   return (
     <main className="dashboard">
@@ -206,52 +283,76 @@ export function App() {
       </section>
 
       <section className="stats-grid" aria-label="Executive metrics">
-        <article className="stat good">
+        <button type="button" className={`stat good${metric === "revenue" ? " active" : ""}`} onClick={() => focusTrend("revenue")}>
           <span>Revenue trend</span>
           <strong>{money.format(lastQuarterRevenue)}</strong>
           <p>Last 3 months vs {money.format(firstQuarterRevenue)} in the first 3 months.</p>
-        </article>
-        <article className="stat">
+        </button>
+        <button type="button" className={`stat${metric === "avgInvoice" ? " active" : ""}`} onClick={() => focusTrend("avgInvoice")}>
           <span>Average invoice</span>
           <strong>{money.format(avgInvoice)}</strong>
           <p>Large project work is lifting invoice value above routine service calls.</p>
-        </article>
-        <article className="stat warn">
+        </button>
+        <button
+          type="button"
+          className={`stat warn${activeMonth === peakOpenMonth.month ? " active" : ""}`}
+          onClick={() => focusTrend("revenue", peakOpenMonth.month)}
+        >
           <span>Outstanding</span>
           <strong>{money.format(outstanding)}</strong>
           <p>{pct.format(outstanding / totalRevenue)} of recorded revenue is still open.</p>
-        </article>
-        <article className="stat good">
+        </button>
+        <button
+          type="button"
+          className={`stat good${rankMode === "services" ? " active" : ""}`}
+          onClick={() => {
+            setRankMode("services")
+            requestAnimationFrame(() => {
+              document.getElementById("concentration")?.scrollIntoView({ behavior: "smooth", block: "start" })
+            })
+          }}
+        >
           <span>Top service</span>
           <strong>{pct.format(topService.share)}</strong>
           <p>{topService.name} generated {money.format(topService.revenue)}.</p>
-        </article>
+        </button>
       </section>
 
-      <section className="panel trend-panel">
+      <section className="panel trend-panel" id="trend">
         <div className="section-heading">
           <div>
             <span className="eyebrow">Month-over-month trend</span>
             <h2>Click any month to inspect the operating signal behind it.</h2>
           </div>
-          <div className="segmented" aria-label="Trend metric">
-            {(["revenue", "invoices", "avgInvoice"] as const).map((item) => (
-              <button className={metric === item ? "active" : ""} key={item} onClick={() => setMetric(item)}>
-                {metricLabel(item)}
-              </button>
-            ))}
-          </div>
+          <SegmentedControl
+            label="Trend metric"
+            value={metric}
+            options={[
+              { key: "revenue", label: "Revenue" },
+              { key: "invoices", label: "Invoices" },
+              { key: "avgInvoice", label: "Avg invoice" },
+            ]}
+            onChange={setMetric}
+          />
         </div>
         <TrendChart activeMonth={activeMonth} metric={metric} onSelect={setActiveMonth} />
-        <div className="month-strip">
-          <div>
-            <span>Selected month</span>
-            <strong>{selected.month}</strong>
+        <div className="month-strip" aria-live="polite">
+          <div className="month-nav">
+            <button type="button" aria-label="Previous month" disabled={selectedIndex <= 0} onClick={() => stepMonth(-1)}>
+              ←
+            </button>
+            <div>
+              <span>Selected month</span>
+              <strong>{selected.month}</strong>
+            </div>
+            <button type="button" aria-label="Next month" disabled={selectedIndex >= months.length - 1} onClick={() => stepMonth(1)}>
+              →
+            </button>
           </div>
-          <div>
+          <button type="button" className="month-stat" onClick={() => setMetric(metric === "revenue" ? "invoices" : metric === "invoices" ? "avgInvoice" : "revenue")}>
             <span>{metricLabel(metric)}</span>
             <strong>{formatMetric(metricValue(selected, metric), metric)}</strong>
-          </div>
+          </button>
           <div>
             <span>MoM change</span>
             <strong className={(selected.delta ?? 0) >= 0 ? "positive" : "negative"}>
@@ -265,17 +366,22 @@ export function App() {
         </div>
       </section>
 
-      <section className="two-column">
+      <section className="two-column" id="concentration">
         <article className="panel">
           <div className="section-heading compact">
             <div>
               <span className="eyebrow">Concentration</span>
               <h2>Who and what drives revenue?</h2>
             </div>
-            <div className="segmented" aria-label="Ranking mode">
-              <button className={rankMode === "customers" ? "active" : ""} onClick={() => setRankMode("customers")}>Customers</button>
-              <button className={rankMode === "services" ? "active" : ""} onClick={() => setRankMode("services")}>Services</button>
-            </div>
+            <SegmentedControl
+              label="Ranking mode"
+              value={rankMode}
+              options={[
+                { key: "customers", label: "Customers" },
+                { key: "services", label: "Services" },
+              ]}
+              onChange={setRankMode}
+            />
           </div>
           <RankList rows={rankRows} />
         </article>
@@ -335,15 +441,34 @@ export function App() {
       </section>
 
       <section className="outliers" aria-label="Unusual changes">
-        {outliers.map((item) => (
-          <article key={item.label}>
-            <span>{item.metric}</span>
-            <strong>{item.label}</strong>
-            <em>{money.format(item.value)}</em>
-            <p>{item.note}</p>
-            <b className={item.tone === "low" ? "overdue" : ""}>{item.tone}</b>
-          </article>
-        ))}
+        {outliers.map((item) => {
+          const linkedMonth = months.find((month) => month.month === item.label)?.month
+          if (linkedMonth) {
+            return (
+              <button
+                key={item.label}
+                type="button"
+                className="outlier-card"
+                onClick={() => focusTrend("revenue", linkedMonth)}
+              >
+                <span>{item.metric}</span>
+                <strong>{item.label}</strong>
+                <em>{money.format(item.value)}</em>
+                <p>{item.note}</p>
+                <b className={item.tone === "low" ? "overdue" : ""}>{item.tone}</b>
+              </button>
+            )
+          }
+          return (
+            <article key={item.label}>
+              <span>{item.metric}</span>
+              <strong>{item.label}</strong>
+              <em>{money.format(item.value)}</em>
+              <p>{item.note}</p>
+              <b className={item.tone === "low" ? "overdue" : ""}>{item.tone}</b>
+            </article>
+          )
+        })}
       </section>
 
       <section className="actions">

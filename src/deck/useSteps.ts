@@ -22,46 +22,48 @@ export function useSteps() {
 
   const next = useCallback(() => {
     setState((prev) => {
+      const base = { ...prev, showOverview: false }
       if (!PROGRESSIVE_REVEAL) {
-        if (prev.slideIndex < slides.length - 1) {
-          return { ...prev, slideIndex: prev.slideIndex + 1, stepIndex: 0 }
+        if (base.slideIndex < slides.length - 1) {
+          return { ...base, slideIndex: base.slideIndex + 1, stepIndex: 0 }
         }
-        return prev
+        return { ...prev, showOverview: false }
       }
 
-      const slide = slides[prev.slideIndex]
+      const slide = slides[base.slideIndex]
       const max = slide?.steps ?? 1
-      if (prev.stepIndex < max - 1) {
-        return { ...prev, stepIndex: prev.stepIndex + 1 }
+      if (base.stepIndex < max - 1) {
+        return { ...base, stepIndex: base.stepIndex + 1 }
       }
-      if (prev.slideIndex < slides.length - 1) {
-        return { ...prev, slideIndex: prev.slideIndex + 1, stepIndex: 0 }
+      if (base.slideIndex < slides.length - 1) {
+        return { ...base, slideIndex: base.slideIndex + 1, stepIndex: 0 }
       }
-      return prev
+      return { ...prev, showOverview: false }
     })
   }, [])
 
   const prev = useCallback(() => {
     setState((prev) => {
+      const base = { ...prev, showOverview: false }
       if (!PROGRESSIVE_REVEAL) {
-        if (prev.slideIndex > 0) {
-          return { ...prev, slideIndex: prev.slideIndex - 1, stepIndex: 0 }
+        if (base.slideIndex > 0) {
+          return { ...base, slideIndex: base.slideIndex - 1, stepIndex: 0 }
         }
-        return prev
+        return { ...prev, showOverview: false }
       }
 
-      if (prev.stepIndex > 0) {
-        return { ...prev, stepIndex: prev.stepIndex - 1 }
+      if (base.stepIndex > 0) {
+        return { ...base, stepIndex: base.stepIndex - 1 }
       }
-      if (prev.slideIndex > 0) {
-        const prevSlide = slides[prev.slideIndex - 1]
+      if (base.slideIndex > 0) {
+        const prevSlide = slides[base.slideIndex - 1]
         return {
-          ...prev,
-          slideIndex: prev.slideIndex - 1,
+          ...base,
+          slideIndex: base.slideIndex - 1,
           stepIndex: (prevSlide?.steps ?? 1) - 1,
         }
       }
-      return prev
+      return { ...prev, showOverview: false }
     })
   }, [])
 

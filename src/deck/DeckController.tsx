@@ -43,12 +43,23 @@ export function DeckController() {
   const displayStep = PROGRESSIVE_REVEAL
     ? deck.stepIndex
     : (currentSlide?.steps ?? 1) - 1
+  const canPrev = deck.slideIndex > 0
+  const canNext = deck.slideIndex < slides.length - 1
 
   return (
     <div className="relative h-full w-full overflow-hidden gradient-mesh">
       <AnimatedBackground variant={deck.slideIndex} />
       <CompanyLogo />
-      <ProgressBar slideIndex={deck.slideIndex} />
+      <ProgressBar
+        slideIndex={deck.slideIndex}
+        canPrev={canPrev}
+        canNext={canNext}
+        overviewOpen={deck.showOverview}
+        onPrev={deck.prev}
+        onNext={deck.next}
+        onOverview={deck.toggleOverview}
+        onFullscreen={deck.toggleFullscreen}
+      />
 
       <div className="relative h-full w-full pt-16">
         <AnimatePresence mode="wait">
