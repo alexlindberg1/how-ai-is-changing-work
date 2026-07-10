@@ -162,29 +162,25 @@ And I want to show you two simple examples of that.
 
 So when you start applying this pattern across more and more parts of a business, I think something important starts to happen to the role of the human.
 
-Go back to the model we started with.
-
-Historically, people were the connection layer because there really was no alternative.
+So go back to the model we started with -- people were the connection layer because there really was no alternative.
 
 - A system captured information.
 - A person pulled it out.
 - A person organized it.
 - A person interpreted it.
-- A person created the report, drafted the email, updated the spreadsheet, or figured out what should happen next.
-- And eventually, someone made a decision.
+- A person created the report, drafted the email, or made whatever the output ended up being. 
 
-But as AI starts taking on more of the gathering, summarizing, analyzing, routing, and preparation work, the human role starts to move.
+But as AI starts taking on more of the gathering, analyzing, and data entry that humans histrocially have done the human role starts to move.
 
 - Instead of spending an hour building the report, maybe you spend five minutes reviewing the recommendation.
 - Instead of checking every transaction, you review the exceptions.
-- Instead of drafting every response from scratch, you apply judgment to something that is already prepared.
 - Instead of manually carrying every piece of information through the process, you step in where your experience actually matters.
 
 And I think that is a much better way to frame the conversation than simply asking, “Will AI replace people?”
 
 The more useful question is:
 
-> **Which parts of a job genuinely require human judgment, relationships, accountability, creativity, and context?**
+> **Which parts of a job genuinely require human judgment or context?**
 >
 > **And which parts exist because, historically, a human was the only thing capable of connecting the dots?**
 
@@ -197,61 +193,43 @@ The businesses that use AI well are going to spend less human energy moving info
 
 ## Slide 10 — How to Actually Get Started
 
-So with all of that said, what should a business leader actually do with this right now?
+So after everything we've talked about, you might be wondering: what should a business leader actually do with all of this right now?
 
-My honest advice is not to go back tomorrow and announce some giant AI transformation initiative.
+Honestly, my advice is — don’t rush out tomorrow and announce some massive AI overhaul. Don’t try to automate your whole company overnight. Don’t feel pressured to buy a stack of new tools just because someone on the internet said you should.
 
-Do not try to automate your entire company.
+Instead, start small.
 
-Do not buy ten different tools because someone online told you that you need them.
+Choose just one person, one routine workflow, and one real pain point.
 
-Start much smaller.
+Look for something that happens on a regular basis and involves moving information from one place to another.
 
-Pick one person, one recurring workflow, and one real pain point.
+- Maybe it’s someone putting together a report.
+- Or someone summarizing email threads.
+- Or preparing quotes.
+- Maybe it’s updating a spreadsheet.
+- Or piecing together info from different systems to answer a question that keeps coming up.
 
-Look for something that happens every week and involves moving information.
-
-- Maybe someone is building a report.
-- Maybe they are summarizing emails.
-- Maybe they are preparing quotes.
-- Reviewing invoices.
-- Updating a spreadsheet.
-- Creating client recaps.
-- Or looking across multiple systems to answer the same question over and over again.
-
-Start there.
+Start with something like that.
 
 Then ask a few simple questions:
 
 - Can AI help gather the information?
 - Can it summarize it?
-- Can it interpret it?
-- Can it prepare the first draft?
-- Can it flag the exceptions?
-- Can it recommend the next step?
-- And eventually, could it connect directly to the systems involved?
+- Can it interpret or explain what’s there?
+- Can it put together a first draft?
+- And maybe down the road, could it connect directly to those systems to cut out manual steps?
 
-You do not need to transform the whole company at once.
+From there, you can:
 
-- One person.
-- One workflow.
-- One month.
+- See what actually works in your real-world situation.
+- Notice where human review is still necessary.
+- Figure out where the real value — the real leverage — actually is.
 
-Learn what works.
-Learn where human review is still necessary.
-Learn where the real leverage is.
+And honestly, the most important thing is this: businesses that start experimenting now are building something incredibly valuable — a real understanding of where AI truly fits in their day-to-day operations.
 
-Because the businesses experimenting now are building something very valuable:
+Finding out where AI moves the needle is the hard part. Rolling out the tech itself is often the easy bit.
 
-An understanding of where AI actually fits inside their operations.
-
-And I think that understanding is going to matter more and more over the next few years.
-
-So I will leave you with one final thought.
-
-> The organizations that win with AI will not necessarily have the best AI.
->
-> They will have the best business context connected to AI.
+So, if I could leave you with one piece of advice, it’s this: start small, dive in, and see for yourself where AI can actually make a difference in your business. The more you experiment and build up your own firsthand knowledge, the better prepared you’ll be — no matter where the technology goes next.
 
 Thank you.
 

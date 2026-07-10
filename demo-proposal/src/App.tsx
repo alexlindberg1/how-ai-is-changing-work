@@ -1,8 +1,18 @@
-import { type CSSProperties, useMemo, useState } from 'react'
+import { type CSSProperties, type MouseEvent, useMemo, useState } from 'react'
 import heroImage from './assets/hotel-repipe-hero.png'
 import './App.css'
 
 const sourceProposalPdf = new URL('../source/summit-plumbing-proposal.pdf', import.meta.url).href
+
+/** Smooth-scroll to a section. Avoids Firefox hash-nav failures when an
+ *  ancestor is treated as a scroll container (e.g. overflow-x:hidden). */
+function scrollToSection(event: MouseEvent<HTMLAnchorElement>, id: string) {
+  const target = document.getElementById(id)
+  if (!target) return
+  event.preventDefault()
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  history.pushState(null, '', `#${id}`)
+}
 
 const scopeGroups = [
   {
@@ -185,16 +195,16 @@ export function App() {
   return (
     <main id="top">
       <nav className="topbar" aria-label="Proposal sections">
-        <a className="brand" href="#top" aria-label="Summit Plumbing proposal home">
+        <a className="brand" href="#top" aria-label="Summit Plumbing proposal home" onClick={(e) => scrollToSection(e, 'top')}>
           <span className="brandMark">SP</span>
           <span>Summit Plumbing</span>
         </a>
         <div className="navLinks">
-          <a href="#overview">Overview</a>
-          <a href="#scope">Scope</a>
-          <a href="#timeline">Timeline</a>
-          <a href="#investment">Investment</a>
-          <a href="#next">Next</a>
+          <a href="#overview" onClick={(e) => scrollToSection(e, 'overview')}>Overview</a>
+          <a href="#scope" onClick={(e) => scrollToSection(e, 'scope')}>Scope</a>
+          <a href="#timeline" onClick={(e) => scrollToSection(e, 'timeline')}>Timeline</a>
+          <a href="#investment" onClick={(e) => scrollToSection(e, 'investment')}>Investment</a>
+          <a href="#next" onClick={(e) => scrollToSection(e, 'next')}>Next</a>
         </div>
       </nav>
 
@@ -208,10 +218,10 @@ export function App() {
             pinhole leaks while protecting guest operations floor by floor.
           </p>
           <div className="heroActions">
-            <a className="primaryAction" href="#investment">
+            <a className="primaryAction" href="#investment" onClick={(e) => scrollToSection(e, 'investment')}>
               Review investment
             </a>
-            <a className="secondaryAction" href="#scope">
+            <a className="secondaryAction" href="#scope" onClick={(e) => scrollToSection(e, 'scope')}>
               Explore scope
             </a>
           </div>

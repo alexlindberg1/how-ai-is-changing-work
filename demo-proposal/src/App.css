@@ -25,6 +25,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep sticky topbar from covering section targets */
+  scroll-padding-top: 4.5rem;
 }
 
 body {
@@ -50,7 +52,9 @@ a {
 }
 
 main {
-  overflow-x: hidden;
+  /* clip (not hidden): Firefox treats overflow-x:hidden as a scroll
+     container, which breaks in-page #anchor nav links. */
+  overflow-x: clip;
 }
 
 .topbar {
